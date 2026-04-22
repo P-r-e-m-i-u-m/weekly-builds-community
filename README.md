@@ -88,7 +88,7 @@ Every Monday, top contributors get **tagged publicly** in a community issue and 
 **Connect:**
 - 🐙 GitHub: [@P-r-e-m-i-u-m](https://github.com/P-r-e-m-i-u-m)
 - 💼 LinkedIn: [syedabdul-aman-genai-developer](https://linkedin.com/in/syedabdul-aman-genai-developer)
-- 🌐 Portfolio: [AmanGenAI]([https://p-r-e-m-i-u-m.github.io/AmanGenAI/](https://p-r-e-m-i-u-m.github.io/portfolio/))
+- 🌐 Portfolio: [AmanGenAI]([https://p-r-e-m-i-u-m.github.io/AmanGenAI/](https://p-r-e-m-i-u-m.github.io/portfolio/)
 
 ---
 
