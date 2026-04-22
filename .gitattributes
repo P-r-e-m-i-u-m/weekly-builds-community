@@ -1,0 +1,11 @@
+﻿# Auto detect text files and perform LF normalization
+* text=auto
+
+# Progress files — treat as union merge to reduce conflicts
+progress/*.md merge=union
+
+# Markdown files
+*.md text eol=lf
+
+# YAML files
+*.yml text eol=lf
