@@ -1,4 +1,4 @@
-﻿name: 📅 Weekly Progress Issue
+name: 📅 Weekly Progress Issue
 
 on:
   schedule:
@@ -38,46 +38,49 @@ jobs:
             const week = "${{ steps.week.outputs.week }}";
             const file = "${{ steps.week.outputs.file }}";
             const title = `📅 Weekly Builds — ${week}, ${year}`;
-            const body = `# 📅 Weekly Builds — ${week}
 
-> Every Monday we celebrate what the community built last week.
-
----
-
-## 🏆 Top Contributors This Week
-
-1. 
-2. 
-3. 
-
----
-
-## 🔥 Streak Badges
-
-| Contributor | Streak |
-|-------------|--------|
-| | |
-
----
-
-## 📊 This Week's Entries
-
-👉 [\`${file}\`](../../${file})
-
----
-
-## 📣 LinkedIn Post
-
-<!-- Drop link here after publishing -->
-
----
-
-## 🚀 Next Week
-
-PRs open now → see [\`WEEKLY_PROGRESS.md\`](../../WEEKLY_PROGRESS.md)
-
----
-*Auto-generated · edited by [@P-r-e-m-i-u-m](https://github.com/P-r-e-m-i-u-m)*`;
+            const body = [
+              `# 📅 Weekly Builds — ${week}`,
+              "",
+              "> Every Monday we celebrate what the community built last week.",
+              "",
+              "---",
+              "",
+              "## 🏆 Top Contributors This Week",
+              "",
+              "1. ",
+              "2. ",
+              "3. ",
+              "",
+              "---",
+              "",
+              "## 🔥 Streak Badges",
+              "",
+              "| Contributor | Streak |",
+              "|-------------|--------|",
+              "| | |",
+              "",
+              "---",
+              "",
+              "## 📊 This Week's Entries",
+              "",
+              `👉 [\`${file}\`](../../${file})`,
+              "",
+              "---",
+              "",
+              "## 📣 LinkedIn Post",
+              "",
+              "<!-- Drop link here after publishing -->",
+              "",
+              "---",
+              "",
+              "## 🚀 Next Week",
+              "",
+              `PRs open now → see [\`WEEKLY_PROGRESS.md\`](../../WEEKLY_PROGRESS.md)`,
+              "",
+              "---",
+              "*Auto-generated · edited by [@P-r-e-m-i-u-m](https://github.com/P-r-e-m-i-u-m)*"
+            ].join("\n");
 
             await github.rest.issues.create({
               owner: context.repo.owner,
