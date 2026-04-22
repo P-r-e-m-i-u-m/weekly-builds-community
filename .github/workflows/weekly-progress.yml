@@ -1,0 +1,88 @@
+﻿name: 📅 Weekly Progress Issue
+
+on:
+  schedule:
+    - cron: "30 0 * * 1"
+  workflow_dispatch:
+    inputs:
+      week_override:
+        description: "Override week (e.g. W17) — leave blank to auto-detect"
+        required: false
+        default: ""
+
+jobs:
+  open-weekly-issue:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+
+    steps:
+      - name: Get week info
+        id: week
+        run: |
+          YEAR=$(date +%Y)
+          WEEK=$(date +%V)
+          WEEK_LABEL="W${WEEK}"
+          if [ -n "${{ github.event.inputs.week_override }}" ]; then
+            WEEK_LABEL="${{ github.event.inputs.week_override }}"
+          fi
+          echo "year=$YEAR" >> $GITHUB_OUTPUT
+          echo "week=$WEEK_LABEL" >> $GITHUB_OUTPUT
+          echo "file=progress/${YEAR}-${WEEK_LABEL}.md" >> $GITHUB_OUTPUT
+
+      - name: Create Weekly Issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const year = "${{ steps.week.outputs.year }}";
+            const week = "${{ steps.week.outputs.week }}";
+            const file = "${{ steps.week.outputs.file }}";
+            const title = `📅 Weekly Builds — ${week}, ${year}`;
+            const body = `# 📅 Weekly Builds — ${week}
+
+> Every Monday we celebrate what the community built last week.
+
+---
+
+## 🏆 Top Contributors This Week
+
+1. 
+2. 
+3. 
+
+---
+
+## 🔥 Streak Badges
+
+| Contributor | Streak |
+|-------------|--------|
+| | |
+
+---
+
+## 📊 This Week's Entries
+
+👉 [\`${file}\`](../../${file})
+
+---
+
+## 📣 LinkedIn Post
+
+<!-- Drop link here after publishing -->
+
+---
+
+## 🚀 Next Week
+
+PRs open now → see [\`WEEKLY_PROGRESS.md\`](../../WEEKLY_PROGRESS.md)
+
+---
+*Auto-generated · edited by [@P-r-e-m-i-u-m](https://github.com/P-r-e-m-i-u-m)*`;
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title,
+              body,
+              labels: ["weekly-progress"],
+            });
