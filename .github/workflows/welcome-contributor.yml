@@ -1,0 +1,71 @@
+name: 👋 Welcome First-Time Contributor
+
+on:
+  pull_request_target:
+    types: [opened]
+
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      issues: read
+
+    steps:
+      - name: Welcome first-time contributor
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const author = context.payload.pull_request.user.login;
+            const prNumber = context.payload.pull_request.number;
+
+            // Check if this is their first PR in this repo
+            const prs = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: "all",
+              per_page: 100,
+            });
+
+            const authorPRs = prs.data.filter(pr => pr.user.login === author);
+
+            if (authorPRs.length !== 1) {
+              console.log(`${author} has ${authorPRs.length} PRs — not first time, skipping.`);
+              return;
+            }
+
+            // Count total contributors so far
+            const allPRs = prs.data.filter(pr => pr.state !== "closed" || pr.merged_at);
+            const uniqueContributors = new Set(allPRs.map(pr => pr.user.login));
+            const builderNumber = uniqueContributors.size;
+
+            const messages = [
+              `you just joined the wall 👊`,
+              `first entry logged. keep showing up 🔥`,
+              `welcome to the build — this is where it starts 🚀`,
+              `you shipped it. that's what matters 💪`,
+            ];
+            const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+
+            const body = `Hey @${author} — ${randomMsg}
+
+You're builder **#${builderNumber}** in weekly-builds-community.
+
+A few things:
+- Your PR will be reviewed and merged shortly
+- Every Monday, top contributors get tagged publicly
+- Show up 4 weeks in a row → you hit the **Streak Wall 🔥**
+- Show up 10 weeks → you become a **Core Member**
+
+See you next week. 👋
+
+— [@P-r-e-m-i-u-m](https://github.com/P-r-e-m-i-u-m)`;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              body,
+            });
+
+            console.log(`Welcomed ${author} as builder #${builderNumber}`);
