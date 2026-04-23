@@ -1,7 +1,7 @@
 name: 🤖 Welcome First-Time Contributor
 
 on:
-  pull_request:
+  pull_request_target:
     types: [opened]
 
 jobs:
@@ -16,6 +16,7 @@ jobs:
         id: count
         uses: actions/github-script@v7
         with:
+          github-token: ${{ secrets.WELCOME_BOT_TOKEN }}
           script: |
             const { data: prs } = await github.rest.pulls.list({
               owner: context.repo.owner,
@@ -38,6 +39,7 @@ jobs:
         if: steps.count.outputs.is_first == 'true'
         uses: actions/github-script@v7
         with:
+          github-token: ${{ secrets.WELCOME_BOT_TOKEN }}
           script: |
             const total = ${{ steps.count.outputs.total }};
             const body = [
