@@ -2,9 +2,7 @@
   <img src="https://raw.githubusercontent.com/P-r-e-m-i-u-m/weekly-builds-community/main/assets/banner.png" alt="Weekly Builds Community" width="100%">
 </p>
 
-<h1 align="center">
-  ðŸ”¨ Weekly Builds Community
-</h1>
+<h1 align="center">🔨 Weekly Builds Community</h1>
 
 <p align="center">
   <b>A weekly contributor game for developers who ship.</b><br>
@@ -24,14 +22,14 @@
 
 ---
 
-## ðŸŽ¯ What Is This?
+## 🎯 What Is This?
 
 **Weekly Builds Community** is a GitHub-native accountability game. No new tools. No sign-ups. Just PRs.
 
 Every week, developers open a pull request sharing:
-- âœ… What they built
-- ðŸš§ What blocked them
-- ðŸŽ¯ What's next
+- ✅ What they built
+- 🚧 What blocked them
+- 🎯 What's next
 
 Every Monday, top contributors get **tagged publicly** in a community issue and **shouted out on LinkedIn**.
 
@@ -39,39 +37,72 @@ Every Monday, top contributors get **tagged publicly** in a community issue and 
 
 ---
 
-## ðŸš€ Quick Start
+## 🚀 Quick Start
 
 | Step | Action | Time |
 |------|--------|------|
 | 1 | **Fork** this repository | 30 sec |
 | 2 | **Add your entry** to `progress/YYYY-WWW.md` | 3 min |
 | 3 | **Open a PR** with your weekly progress | 1 min |
-| 4 | **Show up next week** â€” consistency gets recognized | Weekly |
+| 4 | **Show up next week** — consistency gets recognized | Weekly |
 
-ðŸ“– **[Full Rules â†’](./WEEKLY_PROGRESS.md)**
-ðŸ¤ **[How to Contribute â†’](./CONTRIBUTING.md)**
-ðŸ“‚ **[This Week's Entries â†’](./progress/)**
-
----
-
-## ðŸ† Recognition System
-
-- **ðŸ”¥ Streak Badges** â€” Consistent weekly contributors
-- **ðŸ“£ Monday Shoutouts** â€” Top builders tagged in community issues + LinkedIn
-- **â­ Featured Contributors** â€” Special highlight for exceptional work
+📖 **[Full Rules →](./WEEKLY_PROGRESS.md)**
+🤝 **[How to Contribute →](./CONTRIBUTING.md)**
+📂 **[This Week's Entries →](./progress/)**
+🏆 **[Leaderboard →](./LEADERBOARD.md)**
 
 ---
 
-## ðŸŒ Community Stats
+## 🏆 Recognition System
+
+- **🔥 Streak Badges** — Consistent weekly contributors
+- **📣 Monday Shoutouts** — Top builders tagged in community issues + LinkedIn
+- **⭐ Featured Contributors** — Special highlight for exceptional work
+- **👑 Core Member** — Show up 10 weeks and earn the title permanently
+
+---
+
+## 🌟 Founding Members
+
+> The first 20 builders who showed up. Listed here permanently.
+
+| # | Contributor | Joined |
+|---|-------------|--------|
+| 1 | *open* | — |
+| 2 | *open* | — |
+| 3 | *open* | — |
+| 4 | *open* | — |
+| 5 | *open* | — |
+| 6 | *open* | — |
+| 7 | *open* | — |
+| 8 | *open* | — |
+| 9 | *open* | — |
+| 10 | *open* | — |
+| 11 | *open* | — |
+| 12 | *open* | — |
+| 13 | *open* | — |
+| 14 | *open* | — |
+| 15 | *open* | — |
+| 16 | *open* | — |
+| 17 | *open* | — |
+| 18 | *open* | — |
+| 19 | *open* | — |
+| 20 | *open* | — |
+
+**Only 20 spots. First come, first served. [Open a PR now →](./progress/)**
+
+---
+
+## 🌍 Community Stats
 
 - **Open to:** Developers worldwide
 - **Cadence:** Weekly (Monday issues, anytime PRs)
-- **Platform:** GitHub only â€” no external tools
+- **Platform:** GitHub only — no external tools
 - **Culture:** Build in public, help others, stay consistent
 
 ---
 
-## ðŸ‘¤ Maintainer
+## 👤 Maintainer
 
 <table>
   <tr>
@@ -84,21 +115,20 @@ Every Monday, top contributors get **tagged publicly** in a community issue and 
       <br>
       <sub>Generative AI Developer</sub>
       <br>
-      <sub>Hyderabad, India ðŸ‡®ðŸ‡³</sub>
+      <sub>Hyderabad, India 🇮🇳</sub>
     </td>
   </tr>
 </table>
 
 **Connect:**
-- ðŸ™ GitHub: [@P-r-e-m-i-u-m](https://github.com/P-r-e-m-i-u-m)
-- ðŸ’¼ LinkedIn: [syedabdul-aman-genai-developer](https://linkedin.com/in/syedabdul-aman-genai-developer)
-- ðŸŒ Portfolio: [AmanGenAI]([https://p-r-e-m-i-u-m.github.io/AmanGenAI/](https://p-r-e-m-i-u-m.github.io/portfolio/)
+- 🐙 GitHub: [@P-r-e-m-i-u-m](https://github.com/P-r-e-m-i-u-m)
+- 💼 LinkedIn: [syedabdul-aman-genai-developer](https://linkedin.com/in/syedabdul-aman-genai-developer)
+- 🌐 Portfolio: [AmanGenAI](https://p-r-e-m-i-u-m.github.io/portfolio/)
 
 ---
 
 <p align="center">
-  <i>weekly builds Â· open source Â· build in public Â· ship consistently</i>
+  <i>weekly builds · open source · build in public · ship consistently</i>
   <br>
-  <sub>Made with â¤ï¸ in Hyderabad</sub>
+  <sub>Made with ❤️ in Hyderabad</sub>
 </p>
-
