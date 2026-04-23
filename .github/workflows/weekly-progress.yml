@@ -1,4 +1,4 @@
-﻿name: 📅 Weekly Progress Issue
+name: 📅 Weekly Progress Issue
 
 on:
   schedule:
@@ -37,54 +37,49 @@ jobs:
             const year = "${{ steps.week.outputs.year }}";
             const week = "${{ steps.week.outputs.week }}";
             const file = "${{ steps.week.outputs.file }}";
-            const title = `Week ${week} — What did you ship?`;
+            const title = `📅 Weekly Builds — ${week}, ${year}`;
 
             const body = [
-              `## Week ${week}, ${year}`,
+              `# 📅 Weekly Builds — ${week}`,
               "",
-              "Another week. What did you actually build?",
-              "",
-              `Drop your entry in [\`${file}\`](../../${file}) via a PR and you're in. Takes 5 minutes.`,
+              "> Every Monday we celebrate what the community built last week.",
               "",
               "---",
               "",
-              "### Who showed up last week",
+              "## 🏆 Top Contributors This Week",
               "",
-              "| # | Contributor | What they built |",
-              "|---|-------------|-----------------|",
-              "| 1 | — | — |",
-              "| 2 | — | — |",
-              "| 3 | — | — |",
-              "",
-              "> Edit this table with top contributors before sharing on LinkedIn.",
+              "1. ",
+              "2. ",
+              "3. ",
               "",
               "---",
               "",
-              "### Streak wall 🔥",
+              "## 🔥 Streak Badges",
               "",
-              "Showing up 4 weeks in a row? You are on the wall.",
-              "",
-              "| Contributor | Weeks |",
-              "|-------------|-------|",
-              "| — | — |",
+              "| Contributor | Streak |",
+              "|-------------|--------|",
+              "| | |",
               "",
               "---",
               "",
-              "### This week",
+              "## 📊 This Week's Entries",
               "",
-              `Add your entry here → [\`${file}\`](../../${file})`,
-              "",
-              "Format is in [WEEKLY_PROGRESS.md](../../WEEKLY_PROGRESS.md). One entry per person. No fluff.",
+              `👉 [\`${file}\`](../../${file})`,
               "",
               "---",
               "",
-              "### LinkedIn",
+              "## 📣 LinkedIn Post",
               "",
-              "<!-- paste link after posting -->",
+              "<!-- Drop link here after publishing -->",
               "",
               "---",
               "",
-              `*${week} · Maintained by [@P-r-e-m-i-u-m](https://github.com/P-r-e-m-i-u-m)*`
+              "## 🚀 Next Week",
+              "",
+              `PRs open now → see [\`WEEKLY_PROGRESS.md\`](../../WEEKLY_PROGRESS.md)`,
+              "",
+              "---",
+              "*Auto-generated · edited by [@P-r-e-m-i-u-m](https://github.com/P-r-e-m-i-u-m)*"
             ].join("\n");
 
             await github.rest.issues.create({
