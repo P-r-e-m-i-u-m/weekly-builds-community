@@ -1,0 +1,62 @@
+name: 🤖 Welcome First-Time Contributor
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      issues: read
+
+    steps:
+      - name: Count existing contributors
+        id: count
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: prs } = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: "all",
+              per_page: 100
+            });
+            
+            const uniqueAuthors = new Set(prs.map(pr => pr.user.login));
+            const total = uniqueAuthors.size;
+            
+            const senderLogin = context.payload.pull_request.user.login;
+            const senderPRs = prs.filter(pr => pr.user.login === senderLogin);
+            const isFirstTime = senderPRs.length <= 1;
+            
+            core.setOutput("total", total);
+            core.setOutput("is_first", isFirstTime.toString());
+
+      - name: Welcome comment
+        if: steps.count.outputs.is_first == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const total = ${{ steps.count.outputs.total }};
+            const body = [
+              `## Welcome to the wall 👋`,
+              ``,
+              `You're builder **#${total}** in Weekly Builds Community.`,
+              ``,
+              `What you just did — opening that first PR — is the hardest part. Most people plan, dream, bookmark repos. You shipped.`,
+              ``,
+              `Every Monday we tag top contributors publicly. Show up next week and you're in the running.`,
+              ``,
+              `Questions? Drop them in [Discussions](https://github.com/${{ github.repository }}/discussions).`,
+              ``,
+              `Build on 🔨`
+            ].join("\n");
+            
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body
+            });
