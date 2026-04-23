@@ -1,0 +1,132 @@
+﻿name: 🏆 Update Leaderboard
+
+on:
+  schedule:
+    - cron: "0 1 * * 1"
+  workflow_dispatch:
+
+jobs:
+  update-leaderboard:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate leaderboard
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require("fs");
+            const path = require("path");
+
+            const progressDir = "progress";
+            const files = fs.readdirSync(progressDir).filter(f => f.endsWith(".md"));
+
+            const counts = {};
+            const weeksByUser = {};
+
+            for (const file of files) {
+              const week = file.replace(".md", "");
+              const content = fs.readFileSync(path.join(progressDir, file), "utf8");
+              const lines = content.split("\n");
+              const seen = new Set();
+              for (const line of lines) {
+                const match = line.match(/\|\s*@?([\w-]{1,39})\s*\|/);
+                if (match) {
+                  const user = match[1].toLowerCase();
+                  if (["username", "contributor", "name", "—", "-"].includes(user)) continue;
+                  if (!seen.has(user)) {
+                    seen.add(user);
+                    counts[user] = (counts[user] || 0) + 1;
+                    if (!weeksByUser[user]) weeksByUser[user] = [];
+                    weeksByUser[user].push(week);
+                  }
+                }
+              }
+            }
+
+            const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+
+            function getStreak(weeks) {
+              if (!weeks || weeks.length === 0) return 0;
+              const s = weeks.map(w => {
+                const [year, wk] = w.split("-W");
+                return parseInt(year) * 100 + parseInt(wk);
+              }).sort((a, b) => a - b);
+              let streak = 1, max = 1;
+              for (let i = 1; i < s.length; i++) {
+                if (s[i] - s[i-1] === 1) { streak++; max = Math.max(max, streak); }
+                else streak = 1;
+              }
+              return max;
+            }
+
+            function streakEmoji(s) {
+              if (s >= 8) return "🔥🔥🔥";
+              if (s >= 4) return "🔥🔥";
+              if (s >= 2) return "🔥";
+              return "";
+            }
+
+            function medal(r) {
+              if (r === 1) return "🥇";
+              if (r === 2) return "🥈";
+              if (r === 3) return "🥉";
+              return `${r}.`;
+            }
+
+            function role(c) {
+              if (c >= 10) return "Core Member";
+              if (c >= 5) return "Consistent";
+              return "Builder";
+            }
+
+            const now = new Date().toISOString().split("T")[0];
+            const totalContributors = sorted.length;
+            const totalEntries = sorted.reduce((sum, [, c]) => sum + c, 0);
+
+            let md = `# 🏆 Leaderboard\n\n`;
+            md += `> Auto-updated every Monday · Last updated: ${now}\n\n`;
+            md += `**${totalContributors} contributors · ${totalEntries} total entries**\n\n`;
+            md += `---\n\n`;
+
+            if (sorted.length === 0) {
+              md += `No entries yet. Be the first → [progress/](./progress/)\n`;
+            } else {
+              md += `| Rank | Contributor | Entries | Streak | Role |\n`;
+              md += `|------|-------------|---------|--------|------|\n`;
+              sorted.forEach(([user, count], i) => {
+                const streak = getStreak(weeksByUser[user]);
+                const fire = streakEmoji(streak);
+                const streakLabel = streak > 1 ? `${streak}w ${fire}` : `${streak}w`;
+                md += `| ${medal(i+1)} | [@${user}](https://github.com/${user}) | ${count} | ${streakLabel} | ${role(count)} |\n`;
+              });
+              md += `\n---\n\n### 🔥 Streak Hall of Fame\n\n*Builders with 4+ consecutive weeks*\n\n`;
+              const hof = sorted.filter(([user]) => getStreak(weeksByUser[user]) >= 4);
+              if (hof.length === 0) {
+                md += `No one yet — keep showing up!\n`;
+              } else {
+                hof.forEach(([user]) => {
+                  const streak = getStreak(weeksByUser[user]);
+                  md += `- [@${user}](https://github.com/${user}) — ${streak} weeks 🔥\n`;
+                });
+              }
+            }
+
+            md += `\n---\n\n*Built by [@P-r-e-m-i-u-m](https://github.com/P-r-e-m-i-u-m) · [weekly-builds-community](https://github.com/P-r-e-m-i-u-m/weekly-builds-community)*\n`;
+
+            fs.writeFileSync("LEADERBOARD.md", md);
+            console.log(`Done. Contributors: ${totalContributors}, Entries: ${totalEntries}`);
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add LEADERBOARD.md
+          git diff --staged --quiet || git commit -m "chore: update leaderboard [skip ci]"
+          git push
