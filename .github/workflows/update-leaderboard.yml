@@ -34,6 +34,7 @@ jobs:
             const files = fs.readdirSync(progressDir).filter(f => f.endsWith(".md"));
             const counts = {};
             const weeksByUser = {};
+            
             for (const file of files) {
               const week = file.replace(".md", "");
               const content = fs.readFileSync(path.join(progressDir, file), "utf8");
@@ -41,18 +42,14 @@ jobs:
               const seen = new Set();
               
               for (const line of lines) {
-                // Try matching raw github.com/username links
-                const linkRegex = /github\.com\/([\w-]+)/;
-                const match = linkRegex.exec(line);
+                // matchAll finds ALL github.com links on the line
+                const matches = line.matchAll(/github\.com\/([\w-]+)/g);
                 
-                let user = null;
-                if (match) {
-                  user = match[1].toLowerCase();
-                }
-
-                if (user) {
-                  // Skip common non-user words
-                  if (["username", "contributor", "name", "—", "-", "open", "weekly-builds-community"].includes(user)) continue;
+                for (const match of matches) {
+                  let user = match[1].toLowerCase();
+                  
+                  // Skip repo names and common words
+                  if (["username", "contributor", "name", "—", "-", "open", "weekly-builds-community", "weekly-builds"].includes(user)) continue;
                   
                   if (!seen.has(user)) {
                     seen.add(user);
@@ -63,6 +60,7 @@ jobs:
                 }
               }
             }
+            
             const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
             function getStreak(weeks) {
               if (!weeks || weeks.length === 0) return 0;
