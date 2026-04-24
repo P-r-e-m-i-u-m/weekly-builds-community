@@ -41,20 +41,18 @@ jobs:
               const seen = new Set();
               
               for (const line of lines) {
-                // Enhanced Regex: Match | @User | OR [@User](link) OR | User |
-                const tableMatch = line.match(/\|\s*@?([\w-]{1,39})\s*\|/);
-                const linkMatch = line.match(/\[https?:\/\/github\.com\/([\w-]+)\]/);
+                // Try matching raw github.com/username links
+                const linkRegex = /github\.com\/([\w-]+)/;
+                const match = linkRegex.exec(line);
                 
                 let user = null;
-                if (tableMatch) {
-                  user = tableMatch[1].toLowerCase();
-                } else if (linkMatch) {
-                  user = linkMatch[1].toLowerCase();
+                if (match) {
+                  user = match[1].toLowerCase();
                 }
 
                 if (user) {
                   // Skip common non-user words
-                  if (["username", "contributor", "name", "—", "-", "open"].includes(user)) continue;
+                  if (["username", "contributor", "name", "—", "-", "open", "weekly-builds-community"].includes(user)) continue;
                   
                   if (!seen.has(user)) {
                     seen.add(user);
