@@ -39,11 +39,23 @@ jobs:
               const content = fs.readFileSync(path.join(progressDir, file), "utf8");
               const lines = content.split("\n");
               const seen = new Set();
+              
               for (const line of lines) {
-                const match = line.match(/\|\s*@?([\w-]{1,39})\s*\|/);
-                if (match) {
-                  const user = match[1].toLowerCase();
-                  if (["username", "contributor", "name", "—", "-"].includes(user)) continue;
+                // Enhanced Regex: Match | @User | OR [@User](link) OR | User |
+                const tableMatch = line.match(/\|\s*@?([\w-]{1,39})\s*\|/);
+                const linkMatch = line.match(/\[https?:\/\/github\.com\/([\w-]+)\]/);
+                
+                let user = null;
+                if (tableMatch) {
+                  user = tableMatch[1].toLowerCase();
+                } else if (linkMatch) {
+                  user = linkMatch[1].toLowerCase();
+                }
+
+                if (user) {
+                  // Skip common non-user words
+                  if (["username", "contributor", "name", "—", "-", "open"].includes(user)) continue;
+                  
                   if (!seen.has(user)) {
                     seen.add(user);
                     counts[user] = (counts[user] || 0) + 1;
