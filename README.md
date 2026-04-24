@@ -69,7 +69,7 @@ Every Monday, top contributors get **tagged publicly** in a community issue and 
 | # | Contributor | Joined |
 |---|-------------|--------|
 | 1 | *open* | — |
-| 2 | *open* | — |
+| 2 | [@Rod-at-DOH](https://github.com/Rod-at-DOH) | W17 |
 | 3 | *open* | — |
 | 4 | *open* | — |
 | 5 | *open* | — |
@@ -132,3 +132,4 @@ Every Monday, top contributors get **tagged publicly** in a community issue and 
   <br>
   <sub>Made with ❤️ in Hyderabad</sub>
 </p>
+
