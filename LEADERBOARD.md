@@ -1,12 +1,23 @@
 # 🏆 Leaderboard
 
-> Auto-updated every Monday · Last updated: 2026-04-23
+> Auto-updated every Monday · Last updated: 2026-04-24
 
-**0 contributors · 0 total entries**
+**2 contributors · 2 total entries**
 
 ---
 
-No entries yet. Be the first → [progress/](./progress/)
+| Rank | Contributor | Entries | Streak | Role |
+|------|-------------|---------|--------|------|
+| 🥇 | [@p-r-e-m-i-u-m](https://github.com/p-r-e-m-i-u-m) | 1 | 1w | Builder |
+| 🥈 | [@rod-at-doh](https://github.com/rod-at-doh) | 1 | 1w | Builder |
+
+---
+
+### 🔥 Streak Hall of Fame
+
+*Builders with 4+ consecutive weeks*
+
+No one yet — keep showing up!
 
 ---
 
