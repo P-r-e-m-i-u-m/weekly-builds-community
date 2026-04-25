@@ -5,70 +5,74 @@
 <h1 align="center">🔨 Weekly Builds Community</h1>
 
 <p align="center">
-  <b>A weekly contributor game for developers who ship.</b><br>
+  <b>The accountability game for developers who ship.</b><br>
   Build in public. Get recognized. Grow together.
 </p>
 
 <p align="center">
+  <a href="https://github.com/P-r-e-m-i-u-m/weekly-builds-community/actions/workflows/update-leaderboard.yml">
+    <img src="https://img.shields.io/badge/Leaderboard-Automated-success?style=for-the-badge" alt="Leaderboard Status">
+  </a>
   <a href="https://github.com/P-r-e-m-i-u-m/weekly-builds-community/discussions">
-    <img src="https://img.shields.io/badge/Discussions-Open-green?style=flat-square&logo=github" alt="Discussions">
+    <img src="https://img.shields.io/badge/Community-Discussions-blue?style=for-the-badge" alt="Discussions">
   </a>
   <a href="https://github.com/P-r-e-m-i-u-m/weekly-builds-community/actions">
-    <img src="https://img.shields.io/badge/Actions-Automated-blue?style=flat-square&logo=github-actions" alt="Actions">
+    <img src="https://img.shields.io/badge/CI/CD-GitHub%20Actions-green?style=for-the-badge" alt="CI/CD">
   </a>
-  <img src="https://img.shields.io/badge/Open%20Source-Yes-success?style=flat-square&logo=open-source-initiative" alt="Open Source">
-  <img src="https://img.shields.io/badge/Maintained-Weekly-orange?style=flat-square" alt="Maintained">
 </p>
 
 ---
 
-## 🎯 What Is This?
+## 🎯 The Mission
 
-**Weekly Builds Community** is a GitHub-native accountability game. No new tools. No sign-ups. Just PRs.
+**Weekly Builds Community** is not just a repo. It is a system for consistent growth.
 
-Every week, developers open a pull request sharing:
-- ✅ What they built
-- 🚧 What blocked them
-- 🎯 What's next
+We believe showing up is harder than shipping. That's why we built a GitHub-native game that rewards consistency over perfection.
 
-Every Monday, top contributors get **tagged publicly** in a community issue and **shouted out on LinkedIn**.
-
-> *Started by [Syed Abdul Aman](https://github.com/P-r-e-m-i-u-m), a Generative AI developer from Hyderabad, India.*
+**How it works:**
+1. **Weekly Challenge:** Every Monday, a new issue opens automatically.
+2. **One Entry:** You drop a PR with your weekly progress in `progress/YYYY-WWW.md`.
+3. **Auto-Grading:** Our bots count your entries, track your streaks, and update the leaderboard.
+4. **Recognition:** Top contributors get tagged publicly and immortalized in the README.
 
 ---
 
 ## 🚀 Quick Start
 
 | Step | Action | Time |
-|------|--------|------|
+|:----:|--------|:-----:|
 | 1 | **Fork** this repository | 30 sec |
 | 2 | **Add your entry** to `progress/YYYY-WWW.md` | 3 min |
 | 3 | **Open a PR** with your weekly progress | 1 min |
-| 4 | **Show up next week** — consistency gets recognized | Weekly |
+| 4 | **Watch the leaderboard** update automatically | Weekly |
 
 📖 **[Full Rules →](./WEEKLY_PROGRESS.md)**
 🤝 **[How to Contribute →](./CONTRIBUTING.md)**
 📂 **[This Week's Entries →](./progress/)**
-🏆 **[Leaderboard →](./LEADERBOARD.md)**
+🏆 **[Live Leaderboard →](./LEADERBOARD.md)**
 
 ---
 
-## 🏆 Recognition System
+## 📊 Recognition System
 
-- **🔥 Streak Badges** — Consistent weekly contributors
-- **📣 Monday Shoutouts** — Top builders tagged in community issues + LinkedIn
-- **⭐ Featured Contributors** — Special highlight for exceptional work
-- **👑 Core Member** — Show up 10 weeks and earn the title permanently
+We don't just merge PRs. We recognize builders.
+
+| Badge | Requirement | Benefit |
+|:-----:|-------------|:--------|
+| 🥇 **Leader** | Rank #1 on leaderboard | Tagged in weekly issue |
+| 🔥 **Streak Master** | 4+ consecutive weeks | Permanent Hall of Fame spot |
+| 👑 **Core Member** | 10 total weeks | "Core Member" role & GitHub Team |
+| 🌟 **Founding Member** | One of the first 20 contributors | Permanent spot in README |
 
 ---
 
 ## 🌟 Founding Members
 
-> The first 20 builders who showed up. Listed here permanently.
+> The first 20 builders who believed in this vision. Listed forever.
 
 | # | Contributor | Joined |
 |---|-------------|--------|
-| 1 | *open* | — |
+| 1 | [@P-r-e-m-i-u-m](https://github.com/P-r-e-m-i-u-m) | W17 |
 | 2 | [@Rod-at-DOH](https://github.com/Rod-at-DOH) | W17 |
 | 3 | *open* | — |
 | 4 | *open* | — |
@@ -89,16 +93,19 @@ Every Monday, top contributors get **tagged publicly** in a community issue and 
 | 19 | *open* | — |
 | 20 | *open* | — |
 
-**Only 20 spots. First come, first served. [Open a PR now →](./progress/)**
+**Only 18 spots left. [Open a PR now →](./progress/)**
 
 ---
 
-## 🌍 Community Stats
+## 🛠️ Project Status
 
 - **Open to:** Developers worldwide
 - **Cadence:** Weekly (Monday issues, anytime PRs)
-- **Platform:** GitHub only — no external tools
-- **Culture:** Build in public, help others, stay consistent
+- **Automation:** 
+  - ✅ Automated Weekly Issues
+  - ✅ Automated Leaderboard
+  - ✅ Automated Welcome Bot
+- **Maintained by:** [@P-r-e-m-i-u-m](https://github.com/P-r-e-m-i-u-m)
 
 ---
 
@@ -132,4 +139,3 @@ Every Monday, top contributors get **tagged publicly** in a community issue and 
   <br>
   <sub>Made with ❤️ in Hyderabad</sub>
 </p>
-
