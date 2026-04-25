@@ -120,3 +120,15 @@ Put this in your GitHub Profile README to show your progress:
 [![Rank](https://img.shields.io/badge/Rank-%231-blue?style=flat-square)](https://github.com/P-r-e-m-i-u-m/weekly-builds-community/blob/main/LEADERBOARD.md)
 [![Core Member](https://img.shields.io/badge/Status-Building-brightgreen?style=flat-square)](https://github.com/P-r-e-m-i-u-m/weekly-builds-community)
 
+
+### 🧩 Skill Matrix
+
+Track your tech stack mastery alongside your weekly builds.
+
+**How to join:**
+1. Create a file in `skills/` named after your username (e.g. `skills/p-r-e-m-i-u-m.md`).
+2. Copy the template from [SKILL_MATRIX.md](./SKILL_MATRIX.md).
+3. Paste it into your file and open a PR.
+
+---
+
