@@ -78,3 +78,13 @@ Each file covers one ISO week. Multiple contributors add entries via PR.
 ---
 
 Made with ❤️ by [@P-r-e-m-i-u-m](https://github.com/P-r-e-m-i-u-m) — Hyderabad, India
+
+### 🤝 Tag a Buddy
+
+To earn a **Streak Badge** (4+ weeks), you must **tag another contributor** in your PR.
+
+Example:
+> I'm joining Week 18, and I'm shipping with @Rod-at-DOH.
+
+This helps us grow the community together!
+
