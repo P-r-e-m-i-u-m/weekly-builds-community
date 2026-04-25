@@ -142,3 +142,11 @@ Track your tech stack mastery alongside your weekly builds.
 | 2 | **Add your entry** to `progress/YYYY-WWW.md` | 3 min |
 | 3 | **Open a PR** with your weekly progress | 1 min |
 | 4 | **Watch the leaderboard** update automatically | Weekly |
+
+## 🈳 Languages & Tools
+
+**Tech Stack:**
+- GitHub Actions (Workflow Automation)
+- Node.js (Bot Logic)
+- JavaScript (Frontend Interactions)
+
