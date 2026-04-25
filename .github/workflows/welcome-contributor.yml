@@ -10,61 +10,110 @@ jobs:
     permissions:
       pull-requests: write
       issues: read
+      contents: write
 
     steps:
-      - name: Welcome first-time contributor
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.P_R_E_M_I_U_M_TOKEN }}
+
+      - name: Check contributions and legacy
         uses: actions/github-script@v7
         with:
           script: |
             const author = context.payload.pull_request.user.login;
             const prNumber = context.payload.pull_request.number;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
 
-            const prs = await github.rest.pulls.list({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: "all",
-              per_page: 100,
+            // 1. Count total contributions
+            const fs = require("fs");
+            const path = require("path");
+            
+            if (!fs.existsSync("progress")) {
+              console.log("No progress directory found.");
+              process.exit(0);
+            }
+            
+            const files = fs.readdirSync("progress").filter(f => f.endsWith(".md"));
+            let totalEntries = 0;
+            files.forEach(file => {
+              const content = fs.readFileSync(path.join("progress", file), "utf8");
+              const lines = content.split("\n");
+              const matches = lines.filter(line => line.includes(author));
+              totalEntries += matches.length;
             });
 
-            const authorPRs = prs.data.filter(pr => pr.user.login === author);
-            if (authorPRs.length !== 1) {
-              console.log(`${author} has ${authorPRs.length} PRs — not first time, skipping.`);
-              return;
+            // 2. Check if Core Member (10+ contributions)
+            if (totalEntries >= 10) {
+              // Find their current file (Week W17 for example)
+              const currentWeek = "2026-W17"; 
+              const oldPath = `progress/${currentWeek}.md`;
+              const newPath = `archive/${author}.md`;
+              const linkPath = `progress/${currentWeek}.md`; // Point back to current spot
+
+              // Move file to Archive
+              try {
+                fs.copyFileSync(oldPath, newPath);
+                fs.writeFileSync(oldPath, `
+# 🏛️ Legacy Member
+
+> This account has been archived after reaching Core Member status.
+- **Contributions:** ${totalEntries}
+- **Status:** 🌟 Core Member
+- **Date:** ${new Date().toISOString()}
+
+---
+
+## Work History
+
+See previous entries in the [Archive](archive/) folder.
+`, "utf8");
+                
+                // Leave a "Tombstone" in current progress file linking to archive
+                fs.writeFileSync(linkPath, `
+# ${currentWeek}
+
+> 🏛️ **Legacy Member**
+
+@${author} has graduated to the **[Legacy Archive](${newPath}).
+`, "utf8");
+
+                const body = [
+                  `Hey @${author} — Congratulations! 👋`,
+                  ``,
+                  `You have reached **Core Member** status (${totalEntries} contributions) in Weekly Builds Community!`,
+                  ``,
+                  `This is a huge milestone. You have shown incredible consistency.`,
+                  ``,
+                  `To celebrate, I have moved your work to the **[Legacy Archive](${newPath}).`,
+                  ``,
+                  `This file is now your permanent record in this project.`,
+                  ``,
+                  `Your previous spot in progress/ is now reserved for the next builder.`,
+                  ``,
+                  `Keep building! You are a legend. 🌟`,
+                ].join("\n");
+
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: prNumber,
+                  body,
+                });
+              } catch (err) {
+                console.log("Error moving to archive:", err.message);
+              }
+            } else {
+              console.log(`User has ${totalEntries} entries. Not Core Member yet.`);
             }
 
-            const allPRs = prs.data.filter(pr => pr.state !== "closed" || pr.merged_at);
-            const uniqueContributors = new Set(allPRs.map(pr => pr.user.login));
-            const builderNumber = uniqueContributors.size;
-
-            const messages = [
-              "you just joined the wall 👊",
-              "first entry logged. keep showing up 🔥",
-              "welcome to the build — this is where it starts 🚀",
-              "you shipped it. that's what matters 💪",
-            ];
-            const randomMsg = messages[Math.floor(Math.random() * messages.length)];
-
-            const body = [
-              `Hey @${author} — ${randomMsg}`,
-              ``,
-              `You're builder **#${builderNumber}** in weekly-builds-community.`,
-              ``,
-              `A few things:`,
-              `- Your PR will be reviewed and merged shortly`,
-              `- Every Monday, top contributors get tagged publicly`,
-              `- Show up 4 weeks in a row → you hit the **Streak Wall 🔥**`,
-              `- Show up 10 weeks → you become a **Core Member**`,
-              ``,
-              `See you next week. 👋`,
-              ``,
-              `— [@P-r-e-m-i-u-m](https://github.com/P-r-e-m-i-u-m)`,
-            ].join("\n");
-
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: prNumber,
-              body,
-            });
-
-            console.log(`Welcomed ${author} as builder #${builderNumber}`);
+      - name: Commit and push (Direct)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git diff --staged --quiet || git commit -m "chore: handle core member legacy move"
+          git push
