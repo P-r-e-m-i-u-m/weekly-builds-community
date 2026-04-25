@@ -64,13 +64,8 @@ jobs:
 - **Contributions:** ${totalEntries}
 - **Status:** 🌟 Core Member
 - **Date:** ${new Date().toISOString()}
-
----
-
-## Work History
-
-See previous entries in the [Archive](archive/) folder.
-`, "utf8");
+`,
+ "utf8");
                 
                 // Leave a "Tombstone" in current progress file linking to archive
                 fs.writeFileSync(linkPath, `
@@ -83,17 +78,11 @@ See previous entries in the [Archive](archive/) folder.
 
                 const body = [
                   `Hey @${author} — Congratulations! 👋`,
-                  ``,
                   `You have reached **Core Member** status (${totalEntries} contributions) in Weekly Builds Community!`,
-                  ``,
                   `This is a huge milestone. You have shown incredible consistency.`,
-                  ``,
                   `To celebrate, I have moved your work to the **[Legacy Archive](${newPath}).`,
-                  ``,
                   `This file is now your permanent record in this project.`,
-                  ``,
                   `Your previous spot in progress/ is now reserved for the next builder.`,
-                  ``,
                   `Keep building! You are a legend. 🌟`,
                 ].join("\n");
 
