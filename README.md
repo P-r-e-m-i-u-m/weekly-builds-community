@@ -44,7 +44,7 @@ We believe showing up is harder than shipping. That's why we built a GitHub-nati
 | 1 | **Fork** this repository | 30 sec |
 | 2 | **Add your entry** to `progress/YYYY-WWW.md` | 3 min |
 | 3 | **Open a PR** with your weekly progress | 1 min |
-| 4 | **Watch the leaderboard** update automatically | Weekly |
+| 4 | **Watch** the leaderboard update automatically | Weekly |
 
 📖 **[Full Rules →](./WEEKLY_PROGRESS.md)**
 🤝 **[How to Contribute →](./CONTRIBUTING.md)**
@@ -97,45 +97,26 @@ We don't just merge PRs. We recognize builders.
 
 ---
 
-## 🛠️ Project Status
+## 🎲 Weekly Themes
 
-- **Open to:** Developers worldwide
-- **Cadence:** Weekly (Monday issues, anytime PRs)
-- **Automation:** 
-  - ✅ Automated Weekly Issues
-  - ✅ Automated Leaderboard
-  - ✅ Automated Welcome Bot
-- **Maintained by:** [@P-r-e-m-i-u-m](https://github.com/P-r-e-m-i-u-m)
+To keep it engaging, every week has a different focus.
 
----
-
-## 👤 Maintainer
-
-<table>
-  <tr>
-    <td align="center">
-      <a href="https://github.com/P-r-e-m-i-u-m">
-        <img src="https://github.com/P-r-e-m-i-u-m.png?size=100" width="100" style="border-radius: 50%" alt="Syed Abdul Aman"/>
-        <br>
-        <sub><b>Syed Abdul Aman</b></sub>
-      </a>
-      <br>
-      <sub>Generative AI Developer</sub>
-      <br>
-      <sub>Hyderabad, India 🇮🇳</sub>
-    </td>
-  </tr>
-</table>
-
-**Connect:**
-- 🐙 GitHub: [@P-r-e-m-i-u-m](https://github.com/P-r-e-m-i-u-m)
-- 💼 LinkedIn: [syedabdul-aman-genai-developer](https://linkedin.com/in/syedabdul-aman-genai-developer)
-- 🌐 Portfolio: [AmanGenAI](https://p-r-e-m-i-u-m.github.io/portfolio/)
+| Week | Theme | Challenge |
+|:----:|:--------|:----------|
+| W18 | **🔥 The "Zero" Challenge** | Build something from scratch using *no frameworks* or libraries. Pure logic. |
+| W19 | **🩹 The "Fix" Challenge** | Contribute a bug fix to *another* open-source repo. Document it here. |
+| W20 | **⚡ The "Clone" Challenge** | Recreate a classic app (Calculator, To-Do) using a *tech you've never used* before. |
 
 ---
 
-<p align="center">
-  <i>weekly builds · open source · build in public · ship consistently</i>
-  <br>
-  <sub>Made with ❤️ in Hyderabad</sub>
-</p>
+## 💳 Identity Card
+
+Put this in your GitHub Profile README to show your progress:
+
+```markdown
+### 🔨 Weekly Builds
+
+[![Streak](https://img.shields.io/badge/Streak-4%20weeks-orange?style=flat-square)](https://github.com/P-r-e-m-i-u-m/weekly-builds-community)
+[![Rank](https://img.shields.io/badge/Rank-%231-blue?style=flat-square)](https://github.com/P-r-e-m-i-u-m/weekly-builds-community/blob/main/LEADERBOARD.md)
+[![Core Member](https://img.shields.io/badge/Status-Building-brightgreen?style=flat-square)](https://github.com/P-r-e-m-i-u-m/weekly-builds-community)
+
