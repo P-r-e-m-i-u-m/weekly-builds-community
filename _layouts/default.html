@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page.title }}</title>
+    <style>
+      body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background-color: #0d1117; color: #c9d1d9; margin: 0; padding: 0; }
+      header { background-color: #161b22; border-bottom: 1px solid #30363d; padding: 20px 0; }
+      .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+      h1 { font-size: 2.5rem; margin-bottom: 10px; }
+      .hero { padding: 80px 0; text-align: center; }
+      .hero p { font-size: 1.2rem; color: #8b949e; margin-bottom: 30px; }
+      .btn { display: inline-block; background-color: #238636; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; transition: 0.2s; }
+      .btn:hover { background-color: #2ea043; }
+      .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 40px; }
+      .card { background-color: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px; }
+      .card h3 { color: #58a6ff; margin-top: 0; }
+      footer { text-align: center; padding: 40px 0; color: #8b949e; font-size: 0.9rem; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h2>🔨 Weekly Builds Community</h2>
+      </div>
+    </header>
+    <main class="container">
+      {{ content }}
+    </main>
+    <footer>
+      <div class="container">
+        <p>Made with ❤️ in Hyderabad · Built for builders who ship</p>
+      </div>
+    </footer>
+  </body>
+</html>
