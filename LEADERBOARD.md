@@ -1,6 +1,6 @@
 # 🏆 Leaderboard
 
-> Auto-updated every Monday · Last updated: 2026-05-18
+> Auto-updated every Monday · Last updated: 2026-05-25
 
 **2 contributors · 2 total entries**
 
